@@ -1,8 +1,9 @@
-import express, { Router } from "express"
+import express from "express"
 import { login, logout, profile, register } from "../controller/auth.controller.js";
 
-const authRouter = Router()
-authRouter.route('/register').post(register)
+const authRouter = express.Router()
+authRouter.post('/register', register)
+
 authRouter.route('/login').post(login)
 authRouter.route('/logout').post(logout)
 authRouter.route('/me').post(profile)
