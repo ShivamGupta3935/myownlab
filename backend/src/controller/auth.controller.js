@@ -13,9 +13,9 @@ export const register = asyncHandler(async (req, res) => {
     throw new ApiError(400, "all field are required");
   }
 
-  try {
+  
     const existingUser = await db.user.findUnique({
-      where: { email },
+      where: { email }
     });
     console.log("exist:", existingUser);
 
@@ -25,7 +25,7 @@ export const register = asyncHandler(async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = db.user.create({
+    const newUser = await db.user.create({
       data: {
         name,
         email,
@@ -41,25 +41,78 @@ export const register = asyncHandler(async (req, res) => {
     res.cookie("jwtToken", JWT_TOKEN, {
       httpOnly: true,
       sameSite: true,
-      maxAge: 1000*60*60*24*7
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
-    console.log("user:", newUser);
+   
 
     res
       .status(201)
       .json(new ApiResponse(201, newUser, "user created successfully"));
-  } catch (error) {
-    console.log("error is register: ", error);
-  }
+ 
 });
 
 export const login = asyncHandler(async (req, res) => {
-  console.log("user logged in");
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new ApiError(400, "email or password are incorrect");
+  }
+ 
+  const user = await db.user.findUnique({
+    where:{
+      email
+    }
+  })
+  
+  if (!user) {
+    throw new ApiError(400, "user does not exists");
+  }
+  
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    throw new ApiError(401, "invalid creditails ");
+  }
 
-  return res.status(200).json("user logged in");
+
+  const jwtToken = jwt.sign(
+    {
+      id: user.id,    
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn:'7d'
+    }
+  )
+
+  res.cookie('jwtToken', jwtToken, {
+    httpOnly: true,
+    sameSite: true,
+    maxAge: 1000*60*60*24*7
+  } )
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "user login successfully"));
 });
 
-export const logout = asyncHandler(async (req, res) => {});
+export const logout = asyncHandler(async (req, res) => {
+   res.clearCookie('jwtToken', {
+    httpOnly: true, 
+    secure: true
+   })
 
-export const profile = asyncHandler(async (req, res) => {});
+   return res.status(200).json(new ApiResponse(
+    200,
+    {},
+    "user logout sucessfully"
+   ))
+});
+
+export const profile = asyncHandler(async (req, res) => {
+   return res.status(200).json(
+    new ApiResponse(200,
+      req.user,
+      "profile fetched successfully"
+    )
+   )
+});
