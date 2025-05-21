@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 export const register = asyncHandler(async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, role } = req.body;
 
   if (!email || !password || !name) {
     throw new ApiError(400, "all field are required");

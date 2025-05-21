@@ -2180,6 +2180,9 @@ export namespace Prisma {
     editorial: number
     createdAt: number
     updatedAt: number
+    tastcases: number
+    codeSnippets: number
+    referenceSolutions: number
     _all: number
   }
 
@@ -2225,6 +2228,9 @@ export namespace Prisma {
     editorial?: true
     createdAt?: true
     updatedAt?: true
+    tastcases?: true
+    codeSnippets?: true
+    referenceSolutions?: true
     _all?: true
   }
 
@@ -2313,6 +2319,9 @@ export namespace Prisma {
     editorial: string | null
     createdAt: Date
     updatedAt: Date
+    tastcases: JsonValue
+    codeSnippets: JsonValue
+    referenceSolutions: JsonValue
     _count: ProblemCountAggregateOutputType | null
     _min: ProblemMinAggregateOutputType | null
     _max: ProblemMaxAggregateOutputType | null
@@ -2345,6 +2354,9 @@ export namespace Prisma {
     editorial?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tastcases?: boolean
+    codeSnippets?: boolean
+    referenceSolutions?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["problem"]>
 
@@ -2361,6 +2373,9 @@ export namespace Prisma {
     editorial?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tastcases?: boolean
+    codeSnippets?: boolean
+    referenceSolutions?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["problem"]>
 
@@ -2377,6 +2392,9 @@ export namespace Prisma {
     editorial?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tastcases?: boolean
+    codeSnippets?: boolean
+    referenceSolutions?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["problem"]>
 
@@ -2393,9 +2411,12 @@ export namespace Prisma {
     editorial?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tastcases?: boolean
+    codeSnippets?: boolean
+    referenceSolutions?: boolean
   }
 
-  export type ProblemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "difficulty" | "tags" | "userId" | "examples" | "constraints" | "hint" | "editorial" | "createdAt" | "updatedAt", ExtArgs["result"]["problem"]>
+  export type ProblemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "difficulty" | "tags" | "userId" | "examples" | "constraints" | "hint" | "editorial" | "createdAt" | "updatedAt" | "tastcases" | "codeSnippets" | "referenceSolutions", ExtArgs["result"]["problem"]>
   export type ProblemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2424,6 +2445,9 @@ export namespace Prisma {
       editorial: string | null
       createdAt: Date
       updatedAt: Date
+      tastcases: Prisma.JsonValue
+      codeSnippets: Prisma.JsonValue
+      referenceSolutions: Prisma.JsonValue
     }, ExtArgs["result"]["problem"]>
     composites: {}
   }
@@ -2860,6 +2884,9 @@ export namespace Prisma {
     readonly editorial: FieldRef<"Problem", 'String'>
     readonly createdAt: FieldRef<"Problem", 'DateTime'>
     readonly updatedAt: FieldRef<"Problem", 'DateTime'>
+    readonly tastcases: FieldRef<"Problem", 'Json'>
+    readonly codeSnippets: FieldRef<"Problem", 'Json'>
+    readonly referenceSolutions: FieldRef<"Problem", 'Json'>
   }
     
 
@@ -3314,7 +3341,10 @@ export namespace Prisma {
     hint: 'hint',
     editorial: 'editorial',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    tastcases: 'tastcases',
+    codeSnippets: 'codeSnippets',
+    referenceSolutions: 'referenceSolutions'
   };
 
   export type ProblemScalarFieldEnum = (typeof ProblemScalarFieldEnum)[keyof typeof ProblemScalarFieldEnum]
@@ -3326,6 +3356,13 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -3342,6 +3379,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -3402,6 +3448,20 @@ export namespace Prisma {
    * Reference to a field of type 'Difficulty[]'
    */
   export type ListEnumDifficultyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Difficulty[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -3508,6 +3568,9 @@ export namespace Prisma {
     editorial?: StringNullableFilter<"Problem"> | string | null
     createdAt?: DateTimeFilter<"Problem"> | Date | string
     updatedAt?: DateTimeFilter<"Problem"> | Date | string
+    tastcases?: JsonFilter<"Problem">
+    codeSnippets?: JsonFilter<"Problem">
+    referenceSolutions?: JsonFilter<"Problem">
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -3524,6 +3587,9 @@ export namespace Prisma {
     editorial?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tastcases?: SortOrder
+    codeSnippets?: SortOrder
+    referenceSolutions?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -3543,6 +3609,9 @@ export namespace Prisma {
     editorial?: StringNullableFilter<"Problem"> | string | null
     createdAt?: DateTimeFilter<"Problem"> | Date | string
     updatedAt?: DateTimeFilter<"Problem"> | Date | string
+    tastcases?: JsonFilter<"Problem">
+    codeSnippets?: JsonFilter<"Problem">
+    referenceSolutions?: JsonFilter<"Problem">
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -3559,6 +3628,9 @@ export namespace Prisma {
     editorial?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tastcases?: SortOrder
+    codeSnippets?: SortOrder
+    referenceSolutions?: SortOrder
     _count?: ProblemCountOrderByAggregateInput
     _max?: ProblemMaxOrderByAggregateInput
     _min?: ProblemMinOrderByAggregateInput
@@ -3580,6 +3652,9 @@ export namespace Prisma {
     editorial?: StringNullableWithAggregatesFilter<"Problem"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Problem"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Problem"> | Date | string
+    tastcases?: JsonWithAggregatesFilter<"Problem">
+    codeSnippets?: JsonWithAggregatesFilter<"Problem">
+    referenceSolutions?: JsonWithAggregatesFilter<"Problem">
   }
 
   export type UserCreateInput = {
@@ -3675,6 +3750,9 @@ export namespace Prisma {
     editorial?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    tastcases: JsonNullValueInput | InputJsonValue
+    codeSnippets: JsonNullValueInput | InputJsonValue
+    referenceSolutions: JsonNullValueInput | InputJsonValue
     user: UserCreateNestedOneWithoutProblemInput
   }
 
@@ -3691,6 +3769,9 @@ export namespace Prisma {
     editorial?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    tastcases: JsonNullValueInput | InputJsonValue
+    codeSnippets: JsonNullValueInput | InputJsonValue
+    referenceSolutions: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemUpdateInput = {
@@ -3705,6 +3786,9 @@ export namespace Prisma {
     editorial?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tastcases?: JsonNullValueInput | InputJsonValue
+    codeSnippets?: JsonNullValueInput | InputJsonValue
+    referenceSolutions?: JsonNullValueInput | InputJsonValue
     user?: UserUpdateOneRequiredWithoutProblemNestedInput
   }
 
@@ -3721,6 +3805,9 @@ export namespace Prisma {
     editorial?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tastcases?: JsonNullValueInput | InputJsonValue
+    codeSnippets?: JsonNullValueInput | InputJsonValue
+    referenceSolutions?: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemCreateManyInput = {
@@ -3736,6 +3823,9 @@ export namespace Prisma {
     editorial?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    tastcases: JsonNullValueInput | InputJsonValue
+    codeSnippets: JsonNullValueInput | InputJsonValue
+    referenceSolutions: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemUpdateManyMutationInput = {
@@ -3750,6 +3840,9 @@ export namespace Prisma {
     editorial?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tastcases?: JsonNullValueInput | InputJsonValue
+    codeSnippets?: JsonNullValueInput | InputJsonValue
+    referenceSolutions?: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemUncheckedUpdateManyInput = {
@@ -3765,6 +3858,9 @@ export namespace Prisma {
     editorial?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tastcases?: JsonNullValueInput | InputJsonValue
+    codeSnippets?: JsonNullValueInput | InputJsonValue
+    referenceSolutions?: JsonNullValueInput | InputJsonValue
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3937,6 +4033,29 @@ export namespace Prisma {
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
@@ -3956,6 +4075,9 @@ export namespace Prisma {
     editorial?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tastcases?: SortOrder
+    codeSnippets?: SortOrder
+    referenceSolutions?: SortOrder
   }
 
   export type ProblemMaxOrderByAggregateInput = {
@@ -3994,6 +4116,32 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDifficultyFilter<$PrismaModel>
     _max?: NestedEnumDifficultyFilter<$PrismaModel>
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type ProblemCreateNestedManyWithoutUserInput = {
@@ -4223,6 +4371,29 @@ export namespace Prisma {
     _min?: NestedEnumDifficultyFilter<$PrismaModel>
     _max?: NestedEnumDifficultyFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type ProblemCreateWithoutUserInput = {
     id?: string
@@ -4236,6 +4407,9 @@ export namespace Prisma {
     editorial?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    tastcases: JsonNullValueInput | InputJsonValue
+    codeSnippets: JsonNullValueInput | InputJsonValue
+    referenceSolutions: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemUncheckedCreateWithoutUserInput = {
@@ -4250,6 +4424,9 @@ export namespace Prisma {
     editorial?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    tastcases: JsonNullValueInput | InputJsonValue
+    codeSnippets: JsonNullValueInput | InputJsonValue
+    referenceSolutions: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemCreateOrConnectWithoutUserInput = {
@@ -4294,6 +4471,9 @@ export namespace Prisma {
     editorial?: StringNullableFilter<"Problem"> | string | null
     createdAt?: DateTimeFilter<"Problem"> | Date | string
     updatedAt?: DateTimeFilter<"Problem"> | Date | string
+    tastcases?: JsonFilter<"Problem">
+    codeSnippets?: JsonFilter<"Problem">
+    referenceSolutions?: JsonFilter<"Problem">
   }
 
   export type UserCreateWithoutProblemInput = {
@@ -4368,6 +4548,9 @@ export namespace Prisma {
     editorial?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    tastcases: JsonNullValueInput | InputJsonValue
+    codeSnippets: JsonNullValueInput | InputJsonValue
+    referenceSolutions: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemUpdateWithoutUserInput = {
@@ -4382,6 +4565,9 @@ export namespace Prisma {
     editorial?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tastcases?: JsonNullValueInput | InputJsonValue
+    codeSnippets?: JsonNullValueInput | InputJsonValue
+    referenceSolutions?: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemUncheckedUpdateWithoutUserInput = {
@@ -4396,6 +4582,9 @@ export namespace Prisma {
     editorial?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tastcases?: JsonNullValueInput | InputJsonValue
+    codeSnippets?: JsonNullValueInput | InputJsonValue
+    referenceSolutions?: JsonNullValueInput | InputJsonValue
   }
 
   export type ProblemUncheckedUpdateManyWithoutUserInput = {
@@ -4410,6 +4599,9 @@ export namespace Prisma {
     editorial?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tastcases?: JsonNullValueInput | InputJsonValue
+    codeSnippets?: JsonNullValueInput | InputJsonValue
+    referenceSolutions?: JsonNullValueInput | InputJsonValue
   }
 
 

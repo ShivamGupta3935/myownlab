@@ -47,10 +47,15 @@ model Problem {
   constraints String
   hint String?
   editorial String?
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  tastcases Json
+  codeSnippets Json
+  referenceSolutions Json
+
   //relationships
-    user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
 }
