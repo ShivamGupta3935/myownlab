@@ -43,7 +43,7 @@ model Problem {
   difficulty Difficulty
   tags String[]
   userId String
-  examples String
+  examples Json
   constraints String
   hint String?
   editorial String?
@@ -51,7 +51,7 @@ model Problem {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  tastcases Json
+  testcases Json
   codeSnippets Json
   referenceSolutions Json
 

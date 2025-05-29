@@ -24,3 +24,9 @@ build/
 # Dependency lock files (if not needed)
 package-lock.json
 yarn.lock
+
+# Prisma
+prisma/migrations/
+prisma/dev.db
+prisma/dev.sqlite
+prisma/dev.db-journal

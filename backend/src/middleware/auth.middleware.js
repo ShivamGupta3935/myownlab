@@ -38,9 +38,9 @@ export const isLoggedIn = asyncHandler(async (req, _, next) => {
   next();
 });
 
-export const checkAdmin = asyncHandler(async(req, res) => {
+export const checkAdmin = asyncHandler(async(req, res, next) => {
   const userId = req.user.id
-  const user = db.user.findUnique({ 
+  const user = await db.user.findUnique({ 
     where: {
       id: userId
     },
@@ -48,10 +48,11 @@ export const checkAdmin = asyncHandler(async(req, res) => {
       role: true
     }
   })
-
-  if (!user || user.role !== 'ADMIN') {
-      throw new ApiError(400, "access denied , only admin can create problem")
-  }
-
+  console.log("user:", user);
   
+  
+  if (!user || user.role !== 'ADMIN') {
+    throw new ApiError(400, "access denied , only admin can create problem")
+  }
+  next()  
 })
