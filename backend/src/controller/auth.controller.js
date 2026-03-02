@@ -9,6 +9,9 @@ import bcrypt from "bcryptjs";
 export const register = asyncHandler(async (req, res) => {
   const { email, password, name, role } = req.body;
 
+console.log("backend registered route: ", req);
+
+
   if (!email || !password || !name) {
     throw new ApiError(400, "all field are required");
   }
@@ -33,6 +36,8 @@ export const register = asyncHandler(async (req, res) => {
         role: UserRole.USER,
       },
     });
+    console.log("new user : ", newUser);
+    
 
     const JWT_TOKEN = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
@@ -43,8 +48,7 @@ export const register = asyncHandler(async (req, res) => {
       sameSite: true,
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
-
-   
+  
 
     res
       .status(201)
@@ -67,8 +71,15 @@ export const login = asyncHandler(async (req, res) => {
   if (!user) {
     throw new ApiError(400, "user does not exists");
   }
+  console.log("user", user);
+  console.log("password", password);
   
-  const isMatch = await bcrypt.compare(password, user.password);
+  
+  const isMatch = await bcrypt.compare(password.trim(), user.password);
+
+  console.log("match : ", isMatch);
+  
+
   if (!isMatch) {
     throw new ApiError(401, "invalid creditails ");
   }

@@ -5,7 +5,7 @@ import { db } from "../libs/db.js";
 
 export const isLoggedIn = asyncHandler(async (req, _, next) => {
   const token = req.cookies.jwtToken;
-  // console.log("token:", token);
+  console.log("token:", token);
 
   if (!token) {
     throw new ApiError(404, "token not found");
