@@ -20,7 +20,7 @@ const LoginSchema = z.object({
   password:z.string().min(6 , "Password must be atleast of 6 characters"),
 })
 
-const loginPage = () => {
+const LoginPage = () => {
 
   const [showPassword , setShowPassword] = useState(false);
 
@@ -37,7 +37,7 @@ const loginPage = () => {
   const onSubmit = async (data)=>{
    try {
     await login(data)
-    console.log("Login data" , data)
+    // console.log("Login data" , data)
    } catch (error) {
      console.error("Login failed:", error);
    }
@@ -161,4 +161,4 @@ const loginPage = () => {
   )
 }
 
-export default loginPage;
+export default LoginPage;

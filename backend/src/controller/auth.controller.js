@@ -40,7 +40,7 @@ console.log("backend registered route: ", req);
     
 
     const JWT_TOKEN = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
+      expiresIn: "1d",
     });
 
     res.cookie("jwtToken", JWT_TOKEN, {
@@ -71,13 +71,13 @@ export const login = asyncHandler(async (req, res) => {
   if (!user) {
     throw new ApiError(400, "user does not exists");
   }
-  console.log("user", user);
+  // console.log("user", user);
   console.log("password", password);
   
   
   const isMatch = await bcrypt.compare(password.trim(), user.password);
 
-  console.log("match : ", isMatch);
+  // console.log("match : ", isMatch);
   
 
   if (!isMatch) {

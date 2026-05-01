@@ -4,7 +4,7 @@ import { checkAdmin, isLoggedIn } from '../middleware/auth.middleware.js'
 
 const problemRouter = express.Router()
 
-problemRouter.route('/create-problem').post(isLoggedIn, checkAdmin,createProblem)
+problemRouter.route('/create-problem').post(isLoggedIn, checkAdmin, createProblem)
 problemRouter.route('/get-all-problem').get(isLoggedIn, getAllProblem)
 problemRouter.route('/get-problem/:id').get(isLoggedIn, getProblemById)
 problemRouter.route('/delete-problem/:id').delete(isLoggedIn, checkAdmin, deleteProblem)

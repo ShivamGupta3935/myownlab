@@ -4,9 +4,9 @@ import { getAllSubmission, getAllTheSubmissionsForProblem, getSubmissionsForProb
 
 const submissionRouter = express.Router()
 
-submissionRouter.route('/all-submission').post(isLoggedIn, getAllSubmission)
-submissionRouter.route('/submissions-problem').post(isLoggedIn,getSubmissionsForProblem )
-submissionRouter.route('/all-submission-problem').post(isLoggedIn, getSubmissionsForProblem )
+submissionRouter.route('/all-submission').get(isLoggedIn, getAllSubmission)
+submissionRouter.route('/get-submission/:problemId').get(isLoggedIn,getSubmissionsForProblem )
+submissionRouter.route('/get-submissions-count/:problemId').get(isLoggedIn, getAllTheSubmissionsForProblem )
 
 
 export default submissionRouter;

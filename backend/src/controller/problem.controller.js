@@ -6,6 +6,7 @@ import { submitBatch } from "../libs/judge0.lib.js";
 import { pollBatchResults } from "../libs/judge0.lib.js";
 import { db } from "../libs/db.js";
 
+
 const createProblem = asyncHandler(async (req, res) => {
   const {
     title,
@@ -100,8 +101,17 @@ const createProblem = asyncHandler(async (req, res) => {
     throw new ApiError(400, "error in creating problem");
   }
 });
+
 const getAllProblem = asyncHandler(async (req, res) => {
-  const problems = await db.Problem.findMany();
+  const problems = await db.Problem.findMany({
+    include: {
+      solvedBy : {
+        where: {
+          userId: req.user.id
+        }
+      }
+    }
+  });
   if (!problems) {
     throw new ApiError(404, "problems fetching failed");
   }
@@ -109,6 +119,7 @@ const getAllProblem = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, problems, "problems fetched successfully"));
 });
+
 const getProblemById = asyncHandler(async (req, res) => {
   //get id from params
   //validate id
@@ -131,6 +142,7 @@ const getProblemById = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, problem, "problem fetched successfully by id"));
 });
+
 const deleteProblem = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const existProblem = await db.problem.findUnique({
@@ -152,6 +164,7 @@ const deleteProblem = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, {}, "problem deleted successfully"));
 });
+
 const updateProblem = asyncHandler(async (req, res) => {
   const {
     title,
@@ -211,6 +224,7 @@ const updateProblem = asyncHandler(async (req, res) => {
     }
   }
 });
+
 const getAllProblemSolvedByUser = asyncHandler(async (req, res) => {
   const problems = await db.problem.findMany({
     where: {

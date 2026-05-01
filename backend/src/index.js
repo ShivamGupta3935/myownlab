@@ -25,7 +25,7 @@ const PORT= process.env.PORT || 8181
 //routes
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/problem', problemRouter)
-app.use('/api/v1/execute-code', executeRouter)
+app.use('/api/v1/', executeRouter)
 app.use('/api/v1/submissions', submissionRouter)
 app.use('/api/v1/playlists', playlistRouter)
 
